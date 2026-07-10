@@ -1,0 +1,66 @@
+﻿---
+import Base from "../../layouts/Base.astro";
+const t = {
+  pageTitle: "維修及保養 | Maintenance & Repair",
+  titleCN: "維修及保養",
+  titleEN: "Maintenance & Repair",
+  subtitle: "為客戶提供可靠的保障",
+  subtitleEN: "Reliable Protection for Our Clients",
+  heroImg: "/Machine-1600x1200-1.jpg",
+  intro: "偉保工程有限公司專門提供於商業樓宇，辦公室，餐廳和住宅專業空調的定期保養，維修，銷售和安裝。",
+  introEN: "VIEWCO Engineering Co., Ltd. specializes in providing professional air-conditioning periodic maintenance, repair, sales and installation for commercial buildings, offices, restaurants and residences.",
+  features: [
+    { title: "定期保養", titleEN: "Periodic Maintenance", desc: "制定全面的預防性維護計劃", descEN: "Comprehensive preventive maintenance planning" },
+    { title: "緊急維修", titleEN: "Emergency Repair", desc: "快速響應的專業維修團隊", descEN: "Rapid-response professional repair team" },
+    { title: "系統檢查", titleEN: "System Inspection", desc: "定期設備檢查與性能評估", descEN: "Regular equipment inspection and performance assessment" },
+    { title: "零件更換", titleEN: "Parts Replacement", desc: "原廠零件供應與更換服務", descEN: "Genuine parts supply and replacement" }
+  ],
+  ctaText: "返回服務內容",
+  ctaTextEN: "Back to Services",
+  backUrl: "/our-services/"
+};
+---
+<Base title={t.pageTitle} description={t.subtitleEN}>
+  <section class="page-hero" style={`background:url(${t.heroImg}) center/cover`}>
+    <div class="container">
+      <span class="section-subtitle">Maintenance</span>
+      <h1>{t.titleCN}</h1>
+      <p style="font-size:1.3rem;font-weight:600;margin-bottom:.3rem">{t.titleEN}</p>
+      <p>{t.subtitle}</p>
+      <p style="color:rgba(255,255,255,.5);font-size:.9rem;font-style:italic">{t.subtitleEN}</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container" style="max-width:900px">
+      <p style="font-size:1.1rem;line-height:2;color:var(--body);margin-bottom:1.5rem">{t.intro}</p>
+      <p style="font-size:1rem;line-height:1.9;color:var(--body-light);font-style:italic;margin-bottom:2rem;border-left:3px solid var(--coral);padding-left:1.25rem">{t.introEN}</p>
+    </div>
+  </section>
+  <section class="section" style="background:var(--bg-dark);padding:4rem 0">
+    <div class="container">
+      <div class="section-title">
+        <span class="section-subtitle">Services</span>
+        <h2>服務範圍<span style="font-weight:400;font-size:.6em;color:var(--body-light);margin-left:.5rem">Scope</span></h2>
+      </div>
+      <div class="services-grid" style="max-width:1000px">
+        {t.features.map(f => (
+          <div class="service-card">
+            <div class="service-card__content" style="text-align:left">
+              <h3>{f.title}</h3>
+              <p style="font-size:.8rem;color:var(--body-light);margin-bottom:.5rem">{f.titleEN}</p>
+              <p style="font-size:.9rem">{f.desc}</p>
+              <p style="font-size:.82rem;color:var(--body-light);font-style:italic">{f.descEN}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="cta-banner">
+    <div class="container">
+      <h2>{t.ctaText}</h2>
+      <p style="color:rgba(255,255,255,.5);margin-bottom:1.5rem;font-style:italic">{t.ctaTextEN}</p>
+      <a href={t.backUrl} class="cta-btn">{t.ctaText}</a>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,78 @@
+﻿---
+import Base from "../../layouts/Base.astro";
+const t = {
+  pageTitle: "項目管理 | Project Management",
+  titleCN: "項目管理",
+  titleEN: "Project Management",
+  subtitle: "超過四十年的專業經驗",
+  subtitleEN: "Over 40 Years of Professional Experience",
+  heroImg: "/P2130002-scaled-r2qah3twc4pdxr1klpcqiv90ma1zz44xd4cti3uin8.jpg",
+  intro: "偉保善長於提供專業設計和建設包括機械通風及空調，電氣，項目管理和業務連續性建構等項目。",
+  introEN: "VIEWCO excels in professional design and build services including MVAC, electrical, project management and business continuity planning.",
+  content: "我們多年來所擁有的豐富經驗加上寶貴的工程技術溶入於設計創建方面尤其著名，而且當中更會確保整個設計及建築的可持續性及可維護性。通過所有設計及施工階段可以充分反映我們所應用到的專業知識。",
+  contentEN: "Our extensive experience and valuable engineering expertise are renowned in design creation, ensuring sustainability and maintainability throughout. Through all design and construction phases, our professional knowledge is fully reflected.",
+  content2: "我們在提供創新的空調及通風系統，不僅提高建築物的運營效率和能源效益，同時也提升了客戶的生活和工作條件及所享受到的舒適經驗。",
+  content2EN: "Our innovative air-conditioning and ventilation systems not only enhance building operational efficiency and energy performance but also improve clients' living and working conditions and comfort.",
+  features: [
+    { title: "設計與建造", titleEN: "Design & Build", desc: "提供由概念到完成的全面設計建造方案", descEN: "Comprehensive design-build solutions from concept to completion" },
+    { title: "機械通風空調", titleEN: "MVAC Systems", desc: "專業設計及安裝空調通風系統", descEN: "Professional design and installation of AC and ventilation systems" },
+    { title: "電氣工程", titleEN: "Electrical Engineering", desc: "全面的電力系統設計與安裝服務", descEN: "Comprehensive electrical system design and installation" },
+    { title: "項目管理", titleEN: "Project Management", desc: "確保按時、按預算及最高標準完成", descEN: "On-time, on-budget, highest standard delivery" }
+  ],
+  ctaText: "返回服務內容",
+  ctaTextEN: "Back to Services",
+  backUrl: "/our-services/"
+};
+---
+
+<Base title={t.pageTitle} description={t.subtitleEN}>
+  <section class="page-hero" style={`background:url(${t.heroImg}) center/cover`}>
+    <div class="container">
+      <span class="section-subtitle">Engineering</span>
+      <h1>{t.titleCN}</h1>
+      <p style="font-size:1.3rem;font-weight:600;margin-bottom:.3rem">{t.titleEN}</p>
+      <p>{t.subtitle}</p>
+      <p style="color:rgba(255,255,255,.5);font-size:.9rem;font-style:italic">{t.subtitleEN}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:900px">
+      <p style="font-size:1.1rem;line-height:2;color:var(--body);margin-bottom:1.5rem">{t.intro}</p>
+      <p style="font-size:1rem;line-height:1.9;color:var(--body-light);font-style:italic;margin-bottom:2rem;border-left:3px solid var(--coral);padding-left:1.25rem">{t.introEN}</p>
+      <p style="line-height:2;color:var(--body);margin-bottom:1.5rem">{t.content}</p>
+      <p style="line-height:1.9;color:var(--body-light);font-style:italic;margin-bottom:2rem">{t.contentEN}</p>
+      <p style="line-height:2;color:var(--body);margin-bottom:1.5rem">{t.content2}</p>
+      <p style="line-height:1.9;color:var(--body-light);font-style:italic;margin-bottom:2rem">{t.content2EN}</p>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--bg-dark);padding:4rem 0">
+    <div class="container">
+      <div class="section-title">
+        <span class="section-subtitle">Key Capabilities</span>
+        <h2>核心能力<span style="font-weight:400;font-size:.6em;color:var(--body-light);margin-left:.5rem">Core Strengths</span></h2>
+      </div>
+      <div class="services-grid" style="max-width:1000px">
+        {t.features.map(f => (
+          <div class="service-card">
+            <div class="service-card__content" style="text-align:left">
+              <h3>{f.title}</h3>
+              <p style="font-size:.8rem;color:var(--body-light);margin-bottom:.5rem">{f.titleEN}</p>
+              <p style="font-size:.9rem">{f.desc}</p>
+              <p style="font-size:.82rem;color:var(--body-light);font-style:italic">{f.descEN}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="container">
+      <h2>{t.ctaText}</h2>
+      <p style="color:rgba(255,255,255,.5);margin-bottom:1.5rem;font-style:italic">{t.ctaTextEN}</p>
+      <a href={t.backUrl} class="cta-btn">{t.ctaText}</a>
+    </div>
+  </section>
+</Base>

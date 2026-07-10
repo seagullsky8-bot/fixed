@@ -1,0 +1,70 @@
+﻿---
+import Base from "../../layouts/Base.astro";
+const t = {
+  pageTitle: "室內裝修 | Interior Fit-Out",
+  titleCN: "室內裝修",
+  titleEN: "Interior Fit-Out",
+  subtitle: "創造完美的室內空間與空調規劃",
+  subtitleEN: "Creating Perfect Interior Spaces with AC Planning",
+  heroImg: "/IMG_1283-1290x725.jpg",
+  intro: "我們善長於項目管理，提供由最初設計概念至項目完成的一站式服務，設計範疇包括住宅、餐廳及辦公室等。",
+  introEN: "We excel in project management, providing one-stop service from initial design concepts to project completion, covering residential, restaurant and office designs.",
+  content: "我們的工作是聆聽客戶之需要，提供適時及合乎經濟效益的方案。與客戶敲定設計方向及方案後，我們的設計及承建團隊會共同合作，於合理時間及成本控制內完成整個項目，而在過程的每一步，我們極重視與客戶的緊密溝通。",
+  contentEN: "Our approach is to listen to client needs and provide timely, cost-effective solutions. Once the design direction is confirmed, our design and construction teams collaborate to complete the entire project within reasonable time and cost control, maintaining close communication with clients at every step.",
+  features: [
+    { title: "住宅設計", titleEN: "Residential", desc: "打造舒適溫馨的居家空間", descEN: "Creating comfortable and warm living spaces" },
+    { title: "餐廳設計", titleEN: "Restaurant", desc: "功能性與美學兼備的餐飲空間", descEN: "Functional and aesthetic dining environments" },
+    { title: "辦公室設計", titleEN: "Office", desc: "高效現代的辦公環境規劃", descEN: "Efficient modern office environment planning" },
+    { title: "空調規劃", titleEN: "AC Planning", desc: "完美的室內空調系統整合", descEN: "Perfect indoor AC system integration" }
+  ],
+  ctaText: "返回服務內容",
+  ctaTextEN: "Back to Services",
+  backUrl: "/our-services/"
+};
+---
+<Base title={t.pageTitle} description={t.subtitleEN}>
+  <section class="page-hero" style={`background:url(${t.heroImg}) center/cover`}>
+    <div class="container">
+      <span class="section-subtitle">Fit-Out</span>
+      <h1>{t.titleCN}</h1>
+      <p style="font-size:1.3rem;font-weight:600;margin-bottom:.3rem">{t.titleEN}</p>
+      <p>{t.subtitle}</p>
+      <p style="color:rgba(255,255,255,.5);font-size:.9rem;font-style:italic">{t.subtitleEN}</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container" style="max-width:900px">
+      <p style="font-size:1.1rem;line-height:2;color:var(--body);margin-bottom:1.5rem">{t.intro}</p>
+      <p style="font-size:1rem;line-height:1.9;color:var(--body-light);font-style:italic;margin-bottom:2rem;border-left:3px solid var(--coral);padding-left:1.25rem">{t.introEN}</p>
+      <p style="line-height:2;color:var(--body);margin-bottom:1.5rem">{t.content}</p>
+      <p style="line-height:1.9;color:var(--body-light);font-style:italic;margin-bottom:2rem">{t.contentEN}</p>
+    </div>
+  </section>
+  <section class="section" style="background:var(--bg-dark);padding:4rem 0">
+    <div class="container">
+      <div class="section-title">
+        <span class="section-subtitle">Design Scope</span>
+        <h2>設計範疇<span style="font-weight:400;font-size:.6em;color:var(--body-light);margin-left:.5rem">Scope</span></h2>
+      </div>
+      <div class="services-grid" style="max-width:1000px">
+        {t.features.map(f => (
+          <div class="service-card">
+            <div class="service-card__content" style="text-align:left">
+              <h3>{f.title}</h3>
+              <p style="font-size:.8rem;color:var(--body-light);margin-bottom:.5rem">{f.titleEN}</p>
+              <p style="font-size:.9rem">{f.desc}</p>
+              <p style="font-size:.82rem;color:var(--body-light);font-style:italic">{f.descEN}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="cta-banner">
+    <div class="container">
+      <h2>{t.ctaText}</h2>
+      <p style="color:rgba(255,255,255,.5);margin-bottom:1.5rem;font-style:italic">{t.ctaTextEN}</p>
+      <a href={t.backUrl} class="cta-btn">{t.ctaText}</a>
+    </div>
+  </section>
+</Base>
