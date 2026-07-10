@@ -17,10 +17,32 @@ const seo = getSeoMeta(page, { siteTitle, siteUrl: Astro.url.origin, path: `/${s
 <Base title={seo.title} pageTitle={seo.ogTitle} description={seo.description} canonical={seo.canonical} content={{ collection: "pages", id: page.data.id, slug }}>
   <section class="page-hero"><div class="container"><h1>{page.data.title}</h1></div></section>
   <section class="section"><div class="container"><div class="content-block"><PortableText value={page.data.content} /></div></div></section>
-  <div style="margin:2rem auto;max-width:1100px;padding:0 1.5rem">
+ <div style="margin:2rem auto;max-width:1100px;padding:0 1.5rem">
     <h2 style="text-align:center">專業認證</h2>
     <div style="max-width:400px;margin:0 auto">
       <img src="/awards.png" alt="Professional Certifications" style="width:100%;height:auto;display:block" loading="lazy" />
     </div>
   </div>
+  <script>
+    // Hide "Photo Gallery" / "Project Gallery" / "專案圖片" headings since no images
+    document.querySelectorAll('.content-block h2').forEach(h => {
+      const t = h.textContent.trim();
+      if (t.includes('Gallery') || t.includes('圖片') || t.includes('Photo') || t.includes('Project')) {
+        h.style.display = 'none';
+        // Also hide any empty following elements
+        let next = h.nextElementSibling;
+        while (next && (next.tagName === 'P' || next.tagName === 'DIV') && next.textContent.trim() === '') {
+          next.style.display = 'none';
+          next = next.nextElementSibling;
+        }
+      }
+    });
+    // Style client category list items with ▶ prefix
+    document.querySelectorAll('.content-block ul li, .content-block p').forEach(el => {
+      const t = el.textContent.trim();
+      if (t.startsWith('▶') || t.startsWith('►')) {
+        el.style.cssText = 'padding:.75rem 1rem;margin-bottom:.5rem;background:#f0f4ff;border-radius:6px;font-weight:500;color:#181d4e;border-left:3px solid #fa4729';
+      }
+    });
+  </script>
 </Base>
