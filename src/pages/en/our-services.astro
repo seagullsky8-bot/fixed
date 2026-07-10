@@ -1,0 +1,121 @@
+﻿---
+import Base from "../../layouts/Base.astro";
+const t = {
+  pageTitle: "Our Services",
+  heroTitle: "Our Services",
+  heroSub: "Providing Comprehensive Professional E&M Engineering Services",
+  intro: "VIEWCO is a Hong Kong E&M engineering service contractor, providing installation, alteration, maintenance and repair of air-conditioning, ventilation and exhaust systems.",
+  services: [
+    {
+      title: "Project Management",
+      content: "VIEWCO excels in providing professional design and build services including mechanical ventilation and air-conditioning, electrical, project management and business continuity projects. Our extensive experience combined with valuable engineering expertise is particularly renowned in design creation, ensuring the sustainability and maintainability of the entire design and construction. Our professional knowledge is fully reflected through all design and construction stages. We provide innovative air-conditioning and ventilation systems that not only improve building operational efficiency and energy performance, but also enhance the living and working conditions and comfort experience of our clients.",
+      images: ["/P2130002-scaled-r2qah3twc4pdxr1klpcqiv90ma1zz44xd4cti3uin8.jpg"],
+      alts: ["Project Management Onsite"]
+    },
+    {
+      title: "Maintenance & Repair",
+      content: "VIEWCO Engineering Co., Ltd. specializes in providing professional air-conditioning maintenance, repair, sales and installation services for commercial buildings, offices, restaurants and residential properties.",
+      images: ["/Machine-1600x1200-1.jpg", "/Inspection-1-scaled-e1736498471313-1024x683.jpg"],
+      alts: ["Equipment Machinery", "Equipment Inspection"]
+    },
+    {
+      title: "Interior Fit-Out",
+      content: "We excel in project management, providing one-stop services from initial design concept to project completion, covering residential, restaurant and office spaces. We listen to our clients' needs and provide timely, cost-effective solutions. After finalizing the design direction and plan with clients, our design and construction teams work together to complete the entire project within reasonable time and cost control, emphasizing close communication with clients at every step.",
+      images: ["/panorama-3323163_1920.jpg", "/IMG_1588-1290x725.jpg", "/IMG_1283-1290x725.jpg"],
+      alts: ["Interior Fit-Out Panorama", "Renovation Detail", "Completed Project"]
+    }
+  ],
+  summaryTitle: "Service Summary",
+  summaryList: [
+    "Interior Fit-Out Projects", "Water Pump Overhaul", "Chiller & Cooling Tower Overhaul",
+    "AHU Replacement Works", "Annual Inspection Certificate (FSD)", "Air-Conditioning Cleaning Services",
+    "Electrical Installation & WR2 Inspection", "Chiller Installation & Replacement",
+    "Ventilation System Installation & Replacement", "VRV Installation & Replacement",
+    "Cold Storage Installation Works"
+  ]
+};
+---
+<Base title={t.pageTitle} description={t.heroSub}>
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-subtitle">Services</span>
+      <h1>{t.heroTitle}</h1>
+      <p>{t.heroSub}</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-bottom:0">
+    <div class="container">
+      <div class="section-title">
+        <h2>What We Do</h2>
+        <p class="section-desc">{t.intro}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-section">
+    <div class="container">
+      <div class="services-grid">
+        {t.services.map(s => (
+          <div class={`service-card${s.images.length > 1 ? ' service-card--wide' : ''}`}>
+            <div class="service-card__image" style="cursor:pointer">
+              {s.images.map((img, i) => (
+                <a href={img} target="_blank"><img src={img} alt={s.alts[i]} loading="lazy" /></a>
+              ))}
+            </div>
+            <div class="service-card__content">
+              <h3>{s.title}</h3>
+              <p>{s.content}</p>
+            <a href="/our-services/" class="service-card__link">Read More &rarr;</a>`n            </div>`n          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-title" style="margin-bottom:2rem">
+        <h2 style="color:#fff">{t.summaryTitle}</h2>
+      </div>
+      <div class="summary-grid">
+        {t.summaryList.map(item => (
+          <div class="summary-item">{item}</div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .service-card--wide .service-card__image {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .summary-item {
+    padding: 1rem 1.25rem;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 6px;
+    color: #fff;
+    font-size: .95rem;
+    text-align: center;
+    transition: background .3s, border-color .3s;
+  }
+  .summary-item:hover {
+    background: rgba(255,255,255,.12);
+    border-color: #fa4729;
+  }
+  @media (max-width: 1023px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .summary-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 767px) {
+    .services-grid { grid-template-columns: 1fr !important; }
+    .summary-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

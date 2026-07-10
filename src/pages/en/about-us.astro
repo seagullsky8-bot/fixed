@@ -1,0 +1,182 @@
+﻿---
+import Base from "../../layouts/Base.astro";
+import { detectLocale, SITE_TITLES, SITE_TAGLINES } from "../../utils/i18n";
+
+const locale = detectLocale(Astro.url.pathname);
+const siteTitle = SITE_TITLES[locale];
+const siteTagline = SITE_TAGLINES[locale];
+const prefix = "/en";
+
+const t = {
+  pageTitle: "About VIEWCO",
+  heroTitle: "About VIEWCO",
+  heroSub: "Over 40 Years of Engineering Excellence",
+  sections: [
+    { title: "about us", subtitle: "VIEWCO Engineering Co., Ltd.", content: "Founded in April 1984, VIEWCO Engineering Co., Ltd. has become a shining star in Hong Kong's construction industry. Over these four decades, VIEWCO has not only witnessed Hong Kong's significant transition from the British era to the Special Administrative Region, but has also left an indelible mark in the building and engineering sector. Starting as a small engineering company, VIEWCO has grown into a leading E&M engineering firm specializing in air-conditioning and ventilation system installation, maintenance and repair." }, img: "/home-about.jpg", imgAlt: "Company Overview",
+    { title: "Our History", subtitle: "Four Decades of Engineering Excellence", content: "VIEWCO's story began in 1984, during a period of rapid economic growth in Hong Kong when demand for construction services surged. The founder, driven by a passion for engineering and a vision for the future, established a company dedicated to providing high-quality building services. Initially with just a few employees, VIEWCO quickly built a reputation in the industry through professional expertise and relentless effort.", img: "/P2130002-scaled-r2qah3twc4pdxr1klpcqiv90ma1zz44xd4cti3uin8.jpg", imgAlt: "Our History" },
+    { title: "Our Growth", subtitle: "Four Decades of Engineering Excellence", content: "As the business expanded, VIEWCO introduced advanced technologies and equipment, focusing on air-conditioning and ventilation systems as a core competency. The company provides not only installation services but emphasizes long-term maintenance and improvement, ensuring clients receive the most reliable system performance. This commitment to detail and quality has made VIEWCO the preferred engineering service provider for commercial buildings, offices, schools and restaurants.", img: "/Machine-1600x1200-1.jpg", imgAlt: "Our Growth" }
+  ],
+  linkCards: [
+    { label: "Our Milestones", link: `${prefix}/milestones/`, img: "/Machine-1600x1200-1.jpg", desc: "Four Decades of Engineering Excellence" },
+    { label: "Management Team", link: `${prefix}/management-team/`, img: "/IMG_1588-1290x725.jpg", desc: "Our Professional Management Team" },
+    { label: "Culture, Vision, Mission & Core Values", link: `${prefix}/culture/`, img: "/panorama-3323163_1920.jpg", desc: "We take pride in our values" }
+  ],
+  strengthsTitle: "Our Strengths",
+  strengths: [
+    { name: "Project Management", desc: "Over 40 years of professional experience ensuring every project is completed on time, on budget, and to the highest standards.", img: "/P2130002-scaled-r2qah3twc4pdxr1klpcqiv90ma1zz44xd4cti3uin8.jpg", alt: "Project Management Onsite" },
+    { name: "Maintenance & Repair", desc: "Comprehensive preventive maintenance plans providing reliable protection for clients' systems.", img: "/Inspection-1-scaled-e1736498471313-1024x683.jpg", alt: "Equipment Inspection" },
+    { name: "Interior Fit-Out & AC Planning", desc: "Creating perfect interior spaces that combine aesthetic design with efficient air-conditioning systems.", img: "/Data-Record-6-scaled-e1736497744306.jpg", alt: "Interior Fit-Out Project" }
+  ],
+  servicesCta: "Want to learn more about our services?",
+  servicesLink: "Our Services",
+  servicesUrl: `${prefix}/our-services/`,
+  sustainabilityTitle: "Sustainability",
+  sustainabilitySub: "Contributing to the Environment and Society",
+  sustainabilityText: "ESG x VIEWCO"
+};
+---
+
+<Base title={t.pageTitle} pageTitle={`${t.pageTitle} — ${siteTitle}`} description={siteTagline}>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-subtitle">Since 1984</span>
+      <h1>{t.heroTitle}</h1>
+      <p>{t.heroSub}</p>
+    </div>
+  </section>
+
+  <!-- Company History Timeline -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <span class="section-subtitle">Our Story</span>
+        <h2>Four Decades of Engineering Excellence</h2>
+      </div>
+      <div class="timeline">
+        {t.sections.map((section, i) => (
+          <div class={`timeline-item${i === 0 ? ' timeline-item--active' : ''}`} data-timeline-trigger>
+            <div class="timeline-marker">
+              <div class="timeline-dot"></div>
+              {i < t.sections.length - 1 && <div class="timeline-line"></div>}
+            </div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">{section.title}
+                {section.subtitle && <small class="timeline-subtitle"> — {section.subtitle}</small>}
+              </h3>
+              <p>{section.content}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Discover More — Dark Link Cards -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-title" style="margin-bottom:2.5rem">
+        <span class="section-subtitle" style="color:rgba(255,255,255,.5)">Discover</span>
+        <h2 style="color:#fff">Discover More</h2>
+      </div>
+      <div class="discover-grid">
+        {t.linkCards.map(card => (
+          <a href={card.link} class="discover-card">
+            <div class="discover-card__image"><img src={card.img} alt={card.label} loading="lazy" /></div><div class="discover-card__body"><span class="discover-card__label">{card.label}</span>{card.desc && <span class="discover-card__desc">{card.desc}</span>}</div>
+            <span class="discover-card__arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Strengths — Service Cards with Images -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <span class="section-subtitle">Strengths</span>
+        <h2>{t.strengthsTitle}</h2>
+      </div>
+      <div class="services-grid">
+        {t.strengths.map(s => (
+          <div class="service-card">
+            <a href={s.img} target="_blank" class="service-card__image" style="cursor:pointer">
+              <img src={s.img} alt={s.alt} loading="lazy" />
+            </a>
+            <div class="service-card__content">
+              <h3>{s.name}</h3>
+              <p>{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2>{t.servicesCta}</h2>
+      <a href={t.servicesUrl} class="cta-btn">{t.servicesLink} →</a>
+    </div>
+  </section>
+
+  <!-- Sustainability — Dark Section -->
+  <section class="section section--dark section--sustainability">
+    <div class="container">
+      <div class="sustainability-content">
+        <span class="section-subtitle" style="color:rgba(255,255,255,.5)">ESG</span>
+        <h2 style="color:#fff;margin-bottom:1rem">{t.sustainabilityTitle}</h2>
+        <p style="color:rgba(255,255,255,.75);font-size:1.1rem;line-height:1.8;max-width:700px;margin:0 auto 1rem">{t.sustainabilitySub}</p>
+        <p style="color:#4ade80;font-size:1.3rem;font-weight:600;letter-spacing:.5px">{t.sustainabilityText}</p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .timeline { max-width: 800px; margin: 0 auto; position: relative; }
+  .timeline-item { display: flex; gap: 2rem; position: relative; padding-bottom: 2.5rem; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-marker { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; width: 20px; }
+  .timeline-dot { width: 16px; height: 16px; border-radius: 50%; background: #e0e0e0; border: 3px solid #fff; box-shadow: 0 0 0 2px #e0e0e0; transition: all .3s; flex-shrink: 0; }
+  .timeline-item--active .timeline-dot,
+  .timeline-item:hover .timeline-dot { background: #fa4729; box-shadow: 0 0 0 2px #fa4729; }
+  .timeline-line { width: 2px; flex: 1; background: #e0e0e0; margin-top: .5rem; }
+  .timeline-content { padding-top: 0; }
+  .timeline-title { font-size: 1.25rem; font-weight: 500; color: #181d4e; margin: 0 0 .5rem; }
+  .timeline-subtitle { font-weight: 400; color: #888; font-size: .85rem; margin-left: .25rem; }
+  .timeline-content p { font-size: 1rem; line-height: 1.85; color: #444; margin: 0; }
+  .discover-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+  .discover-card { display: flex; flex-direction: column; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 8px; color: #fff !important; text-decoration: none; transition: all .3s; overflow: hidden; }
+  .discover-card:hover { background: rgba(255,255,255,.12); border-color: #fa4729; transform: translateY(-3px); }
+  .discover-card__image { width: 100%; height: 160px; overflow: hidden; }
+  .discover-card__image img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+  .discover-card__arrow { font-size: 1.1rem; opacity: .5; transition: opacity .3s, transform .3s; padding: 1rem 1.25rem 1.25rem; align-self: flex-end; }
+  .discover-card:hover .discover-card__arrow { opacity: 1; transform: translateX(4px); }
+  .cta-banner {
+    background: linear-gradient(135deg, #181d4e, #090a1a);
+    padding: 4rem 0; text-align: center;
+  }
+  .cta-banner h2 { color: #fff; font-size: 1.5rem; margin: 0 0 1.25rem; font-weight: 400; }
+  .cta-btn {
+    display: inline-block; padding: .85rem 2.5rem; background: #fa4729; color: #fff !important;
+    border-radius: 6px; font-size: 1rem; font-weight: 500; text-decoration: none;
+    transition: background .3s, transform .2s;
+  }
+  .cta-btn:hover { background: #e02010; transform: translateY(-1px); }
+  .section--sustainability { text-align: center; }
+  .sustainability-content { max-width: 700px; margin: 0 auto; }
+  @media (max-width: 1023px) { .services-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+  @media (max-width: 767px) {
+    .services-grid { grid-template-columns: 1fr !important; }
+    .discover-grid { grid-template-columns: 1fr !important; }
+    .timeline-item { gap: 1.25rem; }
+    .cta-banner h2 { font-size: 1.2rem; }
+  }
+</style>
+
+  .discover-card:hover .discover-card__image img { transform: scale(1.05); }
+  .discover-card__body { padding: 1.25rem 1.25rem 0; flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; gap: .35rem; }
+  .discover-card__label { font-size: 1rem; font-weight: 500; }
+  .discover-card__desc { font-size: .8rem; color: rgba(255,255,255,.5); }

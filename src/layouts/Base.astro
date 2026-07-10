@@ -1,0 +1,186 @@
+---
+import { getMenu } from "emdash";
+import { detectLocale, SITE_TITLES, SITE_TAGLINES, LOGO_ALTS } from "../utils/i18n";
+
+interface Props {
+  title: string;
+  pageTitle?: string | null;
+  description?: string | null;
+  image?: string | null;
+  canonical?: string | null;
+  content?: { collection: string; id: string; slug?: string | null };
+}
+
+const { title, pageTitle, description, image, canonical, content } = Astro.props;
+const locale = detectLocale(Astro.url.pathname);
+const siteTitle = SITE_TITLES[locale];
+const siteTagline = SITE_TAGLINES[locale];
+const logoAlt = LOGO_ALTS[locale];
+const menu = await getMenu("primary", { locale });
+
+const fullTitle = title ? `${title} — ${siteTitle}` : siteTitle;
+const pageDescription = description ?? siteTagline;
+
+const prefix = locale === "zh-Hant" ? "" : locale === "zh-Hans" ? "/cn" : "/en";
+const homeUrl = prefix + "/";
+---
+
+<!doctype html>
+<html lang={locale}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={pageDescription} />
+  <meta name="format-detection" content="telephone=no" />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={pageDescription} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={siteTitle} />
+  <title>{fullTitle}</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png" />
+  <style>:root{--color-extra-bg:#090a1a;--color-extra-text:#ffffffbf;--color-extra-dark:#fff;--color-text:#444;--color-text-light:#898a8e;--color-text-link:#fa4729;--color-text-hover:#e02010;--color-bg:#f8f8f8;--color-accent:#fa4729;--font-heading:system-ui,-apple-system,sans-serif;--font-body:system-ui,-apple-system,sans-serif;--grid-gap:1.5rem}</style>
+  <link rel="stylesheet" href="/viewco.css" />
+</head>
+<body>
+  <header class="header" id="header" data-astro-cid-3ef6ksr2>
+    <div class="header__inner container" data-astro-cid-3ef6ksr2>
+      <div class="header__left" data-astro-cid-3ef6ksr2>
+        <a href={homeUrl} class="header__logo" data-astro-cid-3ef6ksr2>
+          <img src="/logo-white.png" alt={logoAlt} width="183" height="49" data-astro-cid-3ef6ksr2 />
+        </a>
+        <nav class="header__nav" id="mainNav" data-astro-cid-3ef6ksr2>
+          <ul data-astro-cid-3ef6ksr2>
+            {menu?.items?.map(item => (
+              <li data-astro-cid-3ef6ksr2>
+                <a href={item.url} data-astro-cid-3ef6ksr2 class={Astro.url.pathname === item.url ? "active" : ""}>
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+      <div class="header__right" data-astro-cid-3ef6ksr2>
+        <div class="header__lang" data-astro-cid-3ef6ksr2>
+          <button class="header__lang-btn" id="langToggle" aria-label="Language" data-astro-cid-3ef6ksr2>🌐</button>
+          <ul class="header__lang-dropdown" id="langDropdown" data-astro-cid-3ef6ksr2>
+            <li data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>繁體中文</a></li>
+            <li data-astro-cid-3ef6ksr2><a href="/cn/" data-astro-cid-3ef6ksr2>简体中文</a></li>
+            <li data-astro-cid-3ef6ksr2><a href="/en/" data-astro-cid-3ef6ksr2>English</a></li>
+          </ul>
+        </div>
+        <button class="header__mobile-toggle" id="mobileToggle" aria-label="Menu" data-astro-cid-3ef6ksr2>
+          <span data-astro-cid-3ef6ksr2></span><span data-astro-cid-3ef6ksr2></span><span data-astro-cid-3ef6ksr2></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="footer" data-astro-cid-sz7xmlte>
+    <div class="footer__main container" data-astro-cid-sz7xmlte>
+      <div class="footer__brand" data-astro-cid-sz7xmlte>
+        <img src="/logo-white.png" alt={logoAlt} class="footer__logo" width="150" height="40" data-astro-cid-sz7xmlte />
+        <p class="footer__slogan" data-astro-cid-sz7xmlte>{siteTagline}</p>
+      </div>
+      <div class="footer__col" data-astro-cid-sz7xmlte>
+        <h4 class="footer__heading" data-astro-cid-sz7xmlte>{locale === "en" ? "Home" : locale === "zh-Hans" ? "首页" : "首頁"}</h4>
+        <nav data-astro-cid-sz7xmlte>
+          {menu?.items?.map(item => <a href={item.url} data-astro-cid-sz7xmlte>{item.label}</a>)}
+        </nav>
+      </div>
+      <div class="footer__col" data-astro-cid-sz7xmlte>
+        <h4 class="footer__heading" data-astro-cid-sz7xmlte>{locale === "en" ? "Head Office" : locale === "zh-Hans" ? "总公司" : "總公司"}</h4>
+        <address data-astro-cid-sz7xmlte>
+          <p data-astro-cid-sz7xmlte>{locale === "en" ? "Unit 711-713, 7/F, Wing Fat Industrial Building, 12 Wang Tai Road, Kowloon Bay, Hong Kong" : locale === "zh-Hans" ? "中国香港 九龙 九龙湾宏泰道12号 荣发工业大厦7楼711-713室" : "中國香港 九龍 九龍灣宏泰道12號 榮發工業大廈7樓711-713室"}</p>
+          <p data-astro-cid-sz7xmlte><a href="mailto:engineering@viewco.com.hk" data-astro-cid-sz7xmlte>engineering@viewco.com.hk</a></p>
+          <p data-astro-cid-sz7xmlte><a href="tel:+85225430610" data-astro-cid-sz7xmlte>+852 25430610</a></p>
+          <p data-astro-cid-sz7xmlte><a href="https://wa.me/85290218198" data-astro-cid-sz7xmlte>WhatsApp: +852 90218198</a></p>
+        </address>
+      </div>
+      <div class="footer__col" data-astro-cid-sz7xmlte>
+        <h4 class="footer__heading" data-astro-cid-sz7xmlte>{locale === "en" ? "Social Media" : locale === "zh-Hans" ? "社交媒体" : "社交媒體"}</h4>
+        <div class="footer__social-links" data-astro-cid-sz7xmlte>
+          <a href="https://www.instagram.com/viewco.engineering/" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social-link" data-astro-cid-sz7xmlte>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-astro-cid-sz7xmlte><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="mailto:engineering@viewco.com.hk" aria-label="Email" class="footer__social-link" data-astro-cid-sz7xmlte>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-astro-cid-sz7xmlte><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+          </a>
+          <a href="https://wa.me/85290218198" target="_blank" rel="noopener" aria-label="WhatsApp" class="footer__social-link" data-astro-cid-sz7xmlte>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-astro-cid-sz7xmlte><path d="M17.5 14.5c-.3.8-1.3 1.5-2.2 1.5-1.2 0-2.5-.7-3.5-1.5s-1.8-2.2-1.8-3.5c0-.9.5-1.9 1.3-2.2.3-.1.5 0 .7.3l1 1.5c.2.2.2.6 0 .8l-.7.7c-.1.1-.1.3 0 .5.4.6 1 1.2 1.7 1.5.2.1.4 0 .5-.1l.7-.7c.2-.2.5-.2.8 0l1.5 1c.2.2.3.4.3.7z"/><path d="M20.5 12a8.5 8.5 0 1 1-3.2-6.8"/><path d="M12 3.5a8.5 8.5 0 0 1 8.5 8.5"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom" data-astro-cid-sz7xmlte>
+      <div class="container" data-astro-cid-sz7xmlte>
+        <p data-astro-cid-sz7xmlte>© 2026 {siteTitle} All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <img src="/awards.png" alt="Awards" style="width:100%;height:auto;display:block" />
+
+  <script>
+    const o=document.getElementById("header"),t=document.getElementById("mobileToggle"),l=document.getElementById("mainNav"),c=document.getElementById("langToggle"),s=document.getElementById("langDropdown");
+    window.addEventListener("scroll",()=>{o?.classList.toggle("is-scrolled",window.scrollY>50)});
+    t?.addEventListener("click",()=>{t.classList.toggle("is-open"),l?.classList.toggle("is-open"),document.body.classList.toggle("menu-open")});
+    c?.addEventListener("click",e=>{e.stopPropagation(),s?.classList.toggle("is-open")});
+    document.addEventListener("click",()=>{s?.classList.remove("is-open")});
+  </script>
+<script>
+// Accordion: click client name to toggle property list
+document.addEventListener("DOMContentLoaded", () => {
+  if (!location.pathname.includes("our-clients")) return;
+  const container = document.querySelector(".content-block");
+  if (!container) return;
+  const h3s = container.querySelectorAll("h3");
+  h3s.forEach(h3 => {
+    const next = h3.nextElementSibling;
+    if (next && next.tagName === "P") {
+      h3.style.cursor = "pointer";
+      h3.style.color = "#181d4e";
+      h3.innerHTML = "▶ " + h3.innerHTML;
+      next.style.display = "none";
+      h3.addEventListener("click", () => {
+        const isOpen = next.style.display === "block";
+        next.style.display = isOpen ? "none" : "block";
+        h3.innerHTML = (isOpen ? "▶ " : "▼ ") + h3.textContent.replace(/^[▶▼] /, "");
+      });
+    }
+  });
+});
+</script>
+
+<script>
+// Render image references in Portable Text as actual images
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".content-block p, .content-block span").forEach(el => {
+    if (el.innerHTML.includes("<img ")) {
+      el.innerHTML = el.textContent; // decode HTML entities
+    }
+  });
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.content-block p').forEach(p => {
+    if (p.innerHTML.includes('&lt;img ')) {
+      const txt = document.createElement('textarea');
+      txt.innerHTML = p.innerHTML;
+      p.innerHTML = txt.value;
+    }
+  });
+});
+</script>
+
+</body>
+</html>

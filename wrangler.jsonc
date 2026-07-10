@@ -1,0 +1,16 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "viewco-cms",
+	"main": "./src/worker.ts",
+	"compatibility_date": "2026-02-24",
+	"compatibility_flags": ["nodejs_compat"],
+	"d1_databases": [
+		{ "binding": "DB", "database_name": "viewco-cms-db", "database_id": "a762e4d5-f8a1-4a93-9be5-6a616c630cac" }
+	],
+	"r2_buckets": [
+		{ "binding": "MEDIA", "bucket_name": "viewco-cms-media" }
+	],
+	"kv_namespaces": [
+		{ "binding": "SESSION", "id": "93cde4898a85447185b5558a6e8ed80a" }
+	]
+}
