@@ -11,11 +11,18 @@ const t = {
   introEN: "We excel in project management, providing one-stop service from initial design concepts to project completion, covering residential, restaurant and office designs.",
   content: "我們的工作是聆聽客戶之需要，提供適時及合乎經濟效益的方案。與客戶敲定設計方向及方案後，我們的設計及承建團隊會共同合作，於合理時間及成本控制內完成整個項目，而在過程的每一步，我們極重視與客戶的緊密溝通。",
   contentEN: "Our approach is to listen to client needs and provide timely, cost-effective solutions. Once the design direction is confirmed, our design and construction teams collaborate to complete the entire project within reasonable time and cost control, maintaining close communication with clients at every step.",
+  contentImg: "/IMG_1588-1290x725.jpg",
   features: [
     { title: "住宅設計", titleEN: "Residential", desc: "打造舒適溫馨的居家空間", descEN: "Creating comfortable and warm living spaces" },
     { title: "餐廳設計", titleEN: "Restaurant", desc: "功能性與美學兼備的餐飲空間", descEN: "Functional and aesthetic dining environments" },
     { title: "辦公室設計", titleEN: "Office", desc: "高效現代的辦公環境規劃", descEN: "Efficient modern office environment planning" },
     { title: "空調規劃", titleEN: "AC Planning", desc: "完美的室內空調系統整合", descEN: "Perfect indoor AC system integration" }
+  ],
+  gallery: [
+    { src: "/IMG_1283-1290x725.jpg", alt: "完工項目實景" },
+    { src: "/IMG_1588-1290x725.jpg", alt: "裝修工程細節" },
+    { src: "/panorama-3323163_1920.jpg", alt: "室內全景" },
+    { src: "/pexels-pat-whelen-2913248-5813016.jpg", alt: "設計案例" }
   ],
   ctaText: "返回服務內容",
   ctaTextEN: "Back to Services",
@@ -32,14 +39,28 @@ const t = {
       <p style="color:rgba(255,255,255,.5);font-size:.9rem;font-style:italic">{t.subtitleEN}</p>
     </div>
   </section>
+
   <section class="section">
+    <div class="container" style="max-width:1000px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center">
+        <div>
+          <p style="font-size:1.1rem;line-height:2;color:var(--body);margin-bottom:1rem">{t.intro}</p>
+          <p style="font-size:.95rem;line-height:1.9;color:var(--body-light);font-style:italic;border-left:3px solid var(--coral);padding-left:1.25rem">{t.introEN}</p>
+        </div>
+        <div>
+          <img src={t.contentImg} alt="裝修工程" style="width:100%;border-radius:var(--radius);box-shadow:var(--shadow)" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
     <div class="container" style="max-width:900px">
-      <p style="font-size:1.1rem;line-height:2;color:var(--body);margin-bottom:1.5rem">{t.intro}</p>
-      <p style="font-size:1rem;line-height:1.9;color:var(--body-light);font-style:italic;margin-bottom:2rem;border-left:3px solid var(--coral);padding-left:1.25rem">{t.introEN}</p>
       <p style="line-height:2;color:var(--body);margin-bottom:1.5rem">{t.content}</p>
       <p style="line-height:1.9;color:var(--body-light);font-style:italic;margin-bottom:2rem">{t.contentEN}</p>
     </div>
   </section>
+
   <section class="section" style="background:var(--bg-dark);padding:4rem 0">
     <div class="container">
       <div class="section-title">
@@ -60,6 +81,24 @@ const t = {
       </div>
     </div>
   </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <span class="section-subtitle">Gallery</span>
+        <h2>項目圖片<span style="font-weight:400;font-size:.6em;color:var(--body-light);margin-left:.5rem">Project Gallery</span></h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:1100px;margin:0 auto">
+        {t.gallery.map(g => (
+          <div style="border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform var(--transition)">
+            <img src={g.src} alt={g.alt} style="width:100%;height:200px;object-fit:cover;display:block" loading="lazy" />
+            <p style="text-align:center;padding:.6rem;font-size:.8rem;color:var(--body-light);margin:0;background:var(--white)">{g.alt}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="cta-banner">
     <div class="container">
       <h2>{t.ctaText}</h2>

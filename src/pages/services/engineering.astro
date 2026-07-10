@@ -10,21 +10,27 @@ const t = {
   intro: "偉保善長於提供專業設計和建設包括機械通風及空調，電氣，項目管理和業務連續性建構等項目。",
   introEN: "VIEWCO excels in professional design and build services including MVAC, electrical, project management and business continuity planning.",
   content: "我們多年來所擁有的豐富經驗加上寶貴的工程技術溶入於設計創建方面尤其著名，而且當中更會確保整個設計及建築的可持續性及可維護性。通過所有設計及施工階段可以充分反映我們所應用到的專業知識。",
-  contentEN: "Our extensive experience and valuable engineering expertise are renowned in design creation, ensuring sustainability and maintainability throughout. Through all design and construction phases, our professional knowledge is fully reflected.",
+  contentEN: "Our extensive experience and valuable engineering expertise are renowned in design creation, ensuring sustainability and maintainability throughout. All design and construction phases fully reflect our professional knowledge.",
   content2: "我們在提供創新的空調及通風系統，不僅提高建築物的運營效率和能源效益，同時也提升了客戶的生活和工作條件及所享受到的舒適經驗。",
-  content2EN: "Our innovative air-conditioning and ventilation systems not only enhance building operational efficiency and energy performance but also improve clients' living and working conditions and comfort.",
+  content2EN: "Our innovative air-conditioning and ventilation systems enhance building operational efficiency and energy performance while improving clients' living and working conditions and comfort.",
+  contentImg: "/2.-HSBC-Building-Fanling-150A-Auto-changeover-contactor-at-main-switchboard-2-r2qah3tvyz1urk7phe3dnb7p3lmutqvk1or5wqzh90.jpg",
   features: [
     { title: "設計與建造", titleEN: "Design & Build", desc: "提供由概念到完成的全面設計建造方案", descEN: "Comprehensive design-build solutions from concept to completion" },
     { title: "機械通風空調", titleEN: "MVAC Systems", desc: "專業設計及安裝空調通風系統", descEN: "Professional design and installation of AC and ventilation systems" },
     { title: "電氣工程", titleEN: "Electrical Engineering", desc: "全面的電力系統設計與安裝服務", descEN: "Comprehensive electrical system design and installation" },
     { title: "項目管理", titleEN: "Project Management", desc: "確保按時、按預算及最高標準完成", descEN: "On-time, on-budget, highest standard delivery" }
   ],
+  gallery: [
+    { src: "/Data-Record-6-scaled-e1736497744306.jpg", alt: "設備數據記錄" },
+    { src: "/Machine-1600x1200-1.jpg", alt: "機組設備" },
+    { src: "/Viewco-website-bay-photo-wmremove.jpeg", alt: "項目現場" },
+    { src: "/Inspection-1-scaled-e1736498471313-1024x683.jpg", alt: "設備檢查" }
+  ],
   ctaText: "返回服務內容",
   ctaTextEN: "Back to Services",
   backUrl: "/our-services/"
 };
 ---
-
 <Base title={t.pageTitle} description={t.subtitleEN}>
   <section class="page-hero" style={`background:url(${t.heroImg}) center/cover`}>
     <div class="container">
@@ -37,9 +43,21 @@ const t = {
   </section>
 
   <section class="section">
+    <div class="container" style="max-width:1000px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center">
+        <div>
+          <p style="font-size:1.1rem;line-height:2;color:var(--body);margin-bottom:1rem">{t.intro}</p>
+          <p style="font-size:.95rem;line-height:1.9;color:var(--body-light);font-style:italic;margin-bottom:1.5rem;border-left:3px solid var(--coral);padding-left:1.25rem">{t.introEN}</p>
+        </div>
+        <div>
+          <img src={t.contentImg} alt="工程項目" style="width:100%;border-radius:var(--radius);box-shadow:var(--shadow)" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
     <div class="container" style="max-width:900px">
-      <p style="font-size:1.1rem;line-height:2;color:var(--body);margin-bottom:1.5rem">{t.intro}</p>
-      <p style="font-size:1rem;line-height:1.9;color:var(--body-light);font-style:italic;margin-bottom:2rem;border-left:3px solid var(--coral);padding-left:1.25rem">{t.introEN}</p>
       <p style="line-height:2;color:var(--body);margin-bottom:1.5rem">{t.content}</p>
       <p style="line-height:1.9;color:var(--body-light);font-style:italic;margin-bottom:2rem">{t.contentEN}</p>
       <p style="line-height:2;color:var(--body);margin-bottom:1.5rem">{t.content2}</p>
@@ -62,6 +80,23 @@ const t = {
               <p style="font-size:.9rem">{f.desc}</p>
               <p style="font-size:.82rem;color:var(--body-light);font-style:italic">{f.descEN}</p>
             </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <span class="section-subtitle">Gallery</span>
+        <h2>項目圖片<span style="font-weight:400;font-size:.6em;color:var(--body-light);margin-left:.5rem">Project Gallery</span></h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:1100px;margin:0 auto">
+        {t.gallery.map(g => (
+          <div style="border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform var(--transition)">
+            <img src={g.src} alt={g.alt} style="width:100%;height:200px;object-fit:cover;display:block" loading="lazy" />
+            <p style="text-align:center;padding:.6rem;font-size:.8rem;color:var(--body-light);margin:0;background:var(--white)">{g.alt}</p>
           </div>
         ))}
       </div>

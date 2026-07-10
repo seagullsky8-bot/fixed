@@ -8,12 +8,19 @@ const t = {
   subtitleEN: "Reliable Protection for Our Clients",
   heroImg: "/Machine-1600x1200-1.jpg",
   intro: "偉保工程有限公司專門提供於商業樓宇，辦公室，餐廳和住宅專業空調的定期保養，維修，銷售和安裝。",
-  introEN: "VIEWCO Engineering Co., Ltd. specializes in providing professional air-conditioning periodic maintenance, repair, sales and installation for commercial buildings, offices, restaurants and residences.",
+  introEN: "VIEWCO specializes in professional AC periodic maintenance, repair, sales and installation for commercial buildings, offices, restaurants and residences.",
+  contentImg: "/Inspection-1-scaled-e1736498471313-1024x683.jpg",
   features: [
     { title: "定期保養", titleEN: "Periodic Maintenance", desc: "制定全面的預防性維護計劃", descEN: "Comprehensive preventive maintenance planning" },
     { title: "緊急維修", titleEN: "Emergency Repair", desc: "快速響應的專業維修團隊", descEN: "Rapid-response professional repair team" },
     { title: "系統檢查", titleEN: "System Inspection", desc: "定期設備檢查與性能評估", descEN: "Regular equipment inspection and performance assessment" },
     { title: "零件更換", titleEN: "Parts Replacement", desc: "原廠零件供應與更換服務", descEN: "Genuine parts supply and replacement" }
+  ],
+  gallery: [
+    { src: "/Machine-1600x1200-1.jpg", alt: "機組設備" },
+    { src: "/Inspection-1-scaled-e1736498471313-1024x683.jpg", alt: "設備檢查維修" },
+    { src: "/Viewco-website-bay-photo-wmremove.jpeg", alt: "項目現場" },
+    { src: "/Data-Record-6-scaled-e1736497744306.jpg", alt: "數據記錄" }
   ],
   ctaText: "返回服務內容",
   ctaTextEN: "Back to Services",
@@ -30,12 +37,21 @@ const t = {
       <p style="color:rgba(255,255,255,.5);font-size:.9rem;font-style:italic">{t.subtitleEN}</p>
     </div>
   </section>
+
   <section class="section">
-    <div class="container" style="max-width:900px">
-      <p style="font-size:1.1rem;line-height:2;color:var(--body);margin-bottom:1.5rem">{t.intro}</p>
-      <p style="font-size:1rem;line-height:1.9;color:var(--body-light);font-style:italic;margin-bottom:2rem;border-left:3px solid var(--coral);padding-left:1.25rem">{t.introEN}</p>
+    <div class="container" style="max-width:1000px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center">
+        <div>
+          <p style="font-size:1.1rem;line-height:2;color:var(--body);margin-bottom:1rem">{t.intro}</p>
+          <p style="font-size:.95rem;line-height:1.9;color:var(--body-light);font-style:italic;border-left:3px solid var(--coral);padding-left:1.25rem">{t.introEN}</p>
+        </div>
+        <div>
+          <img src={t.contentImg} alt="設備檢查" style="width:100%;border-radius:var(--radius);box-shadow:var(--shadow)" loading="lazy" />
+        </div>
+      </div>
     </div>
   </section>
+
   <section class="section" style="background:var(--bg-dark);padding:4rem 0">
     <div class="container">
       <div class="section-title">
@@ -56,6 +72,24 @@ const t = {
       </div>
     </div>
   </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <span class="section-subtitle">Gallery</span>
+        <h2>項目圖片<span style="font-weight:400;font-size:.6em;color:var(--body-light);margin-left:.5rem">Project Gallery</span></h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:1100px;margin:0 auto">
+        {t.gallery.map(g => (
+          <div style="border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform var(--transition)">
+            <img src={g.src} alt={g.alt} style="width:100%;height:200px;object-fit:cover;display:block" loading="lazy" />
+            <p style="text-align:center;padding:.6rem;font-size:.8rem;color:var(--body-light);margin:0;background:var(--white)">{g.alt}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="cta-banner">
     <div class="container">
       <h2>{t.ctaText}</h2>
